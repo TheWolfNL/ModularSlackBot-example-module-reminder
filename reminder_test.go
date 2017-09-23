@@ -1,4 +1,4 @@
-package example
+package reminder
 
 import (
 	"encoding/json"
@@ -10,8 +10,8 @@ import (
 func TestNew(t *testing.T) {
 	module := New()
 
-	if module.Name() != "TestModule" {
-		t.Error("Expected version 0.0.1, got ", module.Name())
+	if module.Name() != "ReminderModule" {
+		t.Error("Expected version ReminderModule, got ", module.Name())
 	}
 
 	if module.Version() != "0.0.1" {
@@ -19,30 +19,28 @@ func TestNew(t *testing.T) {
 	}
 }
 
-func ExampleHello() {
+func ExampleNotify() {
 	module := New()
-	message, err := createMessage("Hello")
+	message, err := createMessage("notify #1")
 	if err != nil {
 		// exit
 	}
 	module.HandleInput(message)
 	// Output: Sending to #C2147483705
-	// Response: Hey there, to you too
+	// Response: Setting reminder for 'notify #1' @U2147483697
 	// Message not sent to slack because slack api is not configured
 }
 
-func ExampleTest() {
+func ExampleRemind() {
 	module := New()
-	message, err := createMessage("test")
+	message, err := createMessage("remind #1")
 	if err != nil {
 		// exit
 	}
+	message.User = "USLACKBOT"
 	module.HandleInput(message)
-	// Output: MessageJSON:
-	// {"type":"message","channel":"C2147483705","user":"U2147483697","text":"test","ts":"1355517523.000005","pinned_to":null}
-	//
-	// Sending to #C2147483705
-	// Response: Read you loud and clear..
+	// Output: Sending to #C2147483705
+	// Response: Notification from reminder
 	// Message not sent to slack because slack api is not configured
 }
 
