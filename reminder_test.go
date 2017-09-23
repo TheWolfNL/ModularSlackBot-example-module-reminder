@@ -11,11 +11,11 @@ func TestNew(t *testing.T) {
 	module := New()
 
 	if module.Name() != "ReminderModule" {
-		t.Error("Expected version ReminderModule, got ", module.Name())
+		t.Error("Expected module name ReminderModule, got ", module.Name())
 	}
 
 	if module.Version() != "0.0.1" {
-		t.Error("Expected version 0.0.1, got ", module.Version())
+		t.Error("Expected module version 0.0.1, got ", module.Version())
 	}
 }
 
