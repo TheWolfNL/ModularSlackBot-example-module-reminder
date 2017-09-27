@@ -1,6 +1,6 @@
 package reminder
 
-import "github.com/thewolfnl/ModularSlackBot/bot"
+import "github.com/thewolfnl/ModularSlackBot"
 
 type ReminderModule struct {
 	*bot.Module

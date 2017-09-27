@@ -1,7 +1,7 @@
 package reminder
 
 import (
-	"github.com/thewolfnl/ModularSlackBot/bot"
+	"github.com/thewolfnl/ModularSlackBot"
 )
 
 var reminders []reminder
@@ -17,17 +17,19 @@ func New() ReminderModule {
 	return reminder
 }
 
-func (module *ReminderModule) notify(message bot.Message) {
+func (module *ReminderModule) notify(message *bot.Message) error {
 	if !message.IsBot() {
 		reminders = append(reminders, reminder{1234, message.User})
 		module.Respond("Setting reminder for '" + message.Text + "' @" + message.User)
 		// fmt.Print(reminders)
 	}
+	return nil
 }
 
-func (module *ReminderModule) remind(message bot.Message) {
+func (module *ReminderModule) remind(message *bot.Message) error {
 	if message.IsBot() {
 		module.SetChannel(message.Channel)
 		module.Respond("Notification from reminder")
 	}
+	return nil
 }

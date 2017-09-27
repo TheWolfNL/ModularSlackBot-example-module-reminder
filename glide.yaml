@@ -1,4 +1,4 @@
-package: github.com/thewolfnl/ModularSlackBot-example-module-hello
+package: github.com/thewolfnl/ModularSlackBot-example-module-reminder
 import:
 - package: github.com/nlopes/slack
   version: ^0.1.0

@@ -1,12 +1,10 @@
-hash: 2ff548ee3e1a03c23714e070fca5dc103ba616bbf52d2d45260b50f3cb11f1dc
-updated: 2017-09-23T16:24:46.477284885+02:00
+hash: 71d05d5d2e36d1ad986cbdea84365f959160247a6600dd49e6f2f83a48e2b1cc
+updated: 2017-09-28T00:12:11.379391286+02:00
 imports:
 - name: github.com/nlopes/slack
   version: c86337c0ef2486a15edd804355d9c73d2f2caed1
 - name: github.com/thewolfnl/ModularSlackBot
-  version: 339a3bb0f159a024ece7c6d7630144beac2d241a
-  subpackages:
-  - bot
+  version: 07c10f72e86129bd28ebc42ff61889b7f3026aae
 - name: golang.org/x/net
   version: 8351a756f30f1297fe94bbf4b767ec589c6ea6d0
   subpackages:

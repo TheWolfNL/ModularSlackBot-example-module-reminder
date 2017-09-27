@@ -1,10 +1,9 @@
 package reminder
 
 import (
-	"encoding/json"
 	"testing"
 
-	"github.com/thewolfnl/ModularSlackBot/bot"
+	"github.com/thewolfnl/ModularSlackBot"
 )
 
 func TestNew(t *testing.T) {
@@ -21,11 +20,7 @@ func TestNew(t *testing.T) {
 
 func ExampleNotify() {
 	module := New()
-	message, err := createMessage("notify #1")
-	if err != nil {
-		// exit
-	}
-	module.HandleInput(message)
+	module.HandleInput(bot.CreateMessage("notify #1"))
 	// Output: Sending to #C2147483705
 	// Response: Setting reminder for 'notify #1' @U2147483697
 	// Message not sent to slack because slack api is not configured
@@ -33,36 +28,10 @@ func ExampleNotify() {
 
 func ExampleRemind() {
 	module := New()
-	message, err := createMessage("remind #1")
-	if err != nil {
-		// exit
-	}
+	message := bot.CreateMessage("remind #1")
 	message.User = "USLACKBOT"
 	module.HandleInput(message)
 	// Output: Sending to #C2147483705
 	// Response: Notification from reminder
 	// Message not sent to slack because slack api is not configured
-}
-
-func createMessage(messageString string) (bot.Message, error) {
-	message := bot.Message{}
-	messageJson := `{
-		"type": "message",
-		"channel": "C2147483705",
-		"user": "U2147483697",
-		"text": "Hello world",
-		"ts": "1355517523.000005"
-		}`
-	if err := json.Unmarshal([]byte(messageJson), &message); err != nil {
-		return bot.Message{}, err
-	}
-	message.Text = messageString
-	return message, nil
-}
-
-func TestCreateMessage(t *testing.T) {
-	_, err := createMessage("Hello")
-	if err != nil {
-		t.Error("Could not create a test message")
-	}
 }
